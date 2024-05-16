@@ -1,0 +1,92 @@
+﻿<Window x:Class="ProductMonitor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProductMonitor"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="生产监控平台" Height="750" Width="1200">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0"/>
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <Grid.Background>
+            <RadialGradientBrush>
+                <!--RadialGradientBrush由里向外渐变-->
+                <!--LinearGradientBrush由左上到右下渐变-->
+                <GradientStop Color="#ff285173" Offset="0"/>
+                <GradientStop Color="#ff244967" Offset="0.5"/>
+                <GradientStop Color="#ff14273a" Offset="1"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <Border BorderThickness="0,0,0,1" BorderBrush="#5518aabd">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Image Source="/Resource/Images/Logo.png" Margin="10,7"/>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="生产监控平台" FontSize="16" Foreground="White" VerticalAlignment="Center"/>
+                    <TextBlock Text="阻碍你前行的，其实就是你自己！" Margin="0,2,0,0" FontSize="12" Foreground="White" VerticalAlignment="Center"/>
+                </StackPanel>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="15"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Button Content="&#xe624;" Style="{StaticResource OperateBtnStyle}"/>
+                        <Button Content="&#xe600;" Style="{StaticResource OperateBtnStyle}"/>
+                        <Button Content="&#xe609;" Style="{StaticResource OperateBtnStyle}" Background="DarkRed"/>
+                    </StackPanel>
+
+                    <Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#5518aabd">
+                        <Border.Background>
+                            <VisualBrush TileMode="FlipXY" Viewport="0,0,7,7" ViewportUnits="Absolute">
+                                <VisualBrush.Visual>
+                                    <Line X1="0" Y1="10" X2="10" Y2="0" Stroke="#5518aabd" StrokeThickness="1"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.Background>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <ContentControl Grid.Row="1" Content="{Binding MonitorUC}">
+            
+        </ContentControl>
+
+        <Border Grid.Row="2" BorderThickness="0,1,0,0" BorderBrush="#5518aabd">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Border BorderThickness="0,1,0,0" BorderBrush="#5518aabd">
+                    <Border.Background>
+                        <VisualBrush TileMode="FlipXY" Viewport="0,0,7,7" ViewportUnits="Absolute">
+                            <VisualBrush.Visual>
+                                <Line X1="0" Y1="10" X2="10" Y2="0" Stroke="#5518aabd" StrokeThickness="1"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.Background>
+                </Border>
+
+                <TextBlock Grid.Column="1" Text="XX教育集团版权所有" Foreground="White" FontSize="15" FontWeight="Bold"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
