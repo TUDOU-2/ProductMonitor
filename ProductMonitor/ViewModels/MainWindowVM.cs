@@ -2,6 +2,7 @@
 using ProductMonitor.UserControls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -25,13 +26,67 @@ namespace ProductMonitor.ViewModels
         private List<EnviromentModel> _EnviromentList; // 环境数据列表
         private List<AlarmModel> _AlarmList; // 报警数据列表
         private List<DeviceModel> _DeviceList; // 设备数据列表
+        public List<RaderModel> _RaderList; // 雷达图数据列表
+        private List<StuffOutWorkModel> _StuffOutWorkList; // 员工缺岗数据列表
+        private List<WorkShopModel> _WorkShopList; // 车间数据列表
+        private List<MachineModel> _MachineList; // 机台数据列表
+
+        public List<MachineModel> MachineList
+        {
+            get { return _MachineList; }
+            set
+            {
+                _MachineList = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("MachineList"));
+            }
+        }
+
+
+        public List<WorkShopModel> WorkShopList
+        {
+            get { return _WorkShopList; }
+            set
+            {
+                _WorkShopList = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("WorkShopList"));
+            }
+        }
+
+
+        public List<StuffOutWorkModel> StuffOutWorkList
+        {
+            get { return _StuffOutWorkList; }
+            set
+            {
+                _StuffOutWorkList = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("StuffOutWorkList"));
+            }
+        }
+
+        public List<RaderModel> RaderList
+        {
+            get { return _RaderList; }
+            set
+            {
+                _RaderList = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("RaderList"));
+            }
+        }
 
         public List<DeviceModel> DeviceList
         {
             get { return _DeviceList; }
-            set { _DeviceList = value; }
+            set
+            {
+                _DeviceList = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("DeviceList"));
+            }
         }
-
 
         public List<AlarmModel> AlarmList
         {
@@ -44,7 +99,6 @@ namespace ProductMonitor.ViewModels
                     PropertyChanged(this, new PropertyChangedEventArgs("MachineCount"));
             }
         }
-
 
         public List<EnviromentModel> EnviromentList
         {
@@ -151,6 +205,10 @@ namespace ProductMonitor.ViewModels
             GetEnviromentData();
             GetAlarmData();
             GetDeviceData();
+            GetRaderData();
+            GetStuffOutWorkData();
+            GetWorkShopData();
+            GetMachineData();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -190,6 +248,54 @@ namespace ProductMonitor.ViewModels
             DeviceList.Add(new DeviceModel { DeviceItem = "振动(mm/s)", Value = 4.1 });
             DeviceList.Add(new DeviceModel { DeviceItem = "转速(r/min)", Value = 2600 });
             DeviceList.Add(new DeviceModel { DeviceItem = "气压(kpa)", Value = 0.5 });
+        }
+
+        private void GetRaderData() // 从数据库中获取雷达图数据
+        {
+            RaderList = new List<RaderModel>();
+            RaderList.Add(new RaderModel { ItemName = "排烟风机", Value = 90 });
+            RaderList.Add(new RaderModel { ItemName = "客梯", Value = 30 });
+            RaderList.Add(new RaderModel { ItemName = "供水机", Value = 34.89 });
+            RaderList.Add(new RaderModel { ItemName = "喷淋水泵", Value = 69.59 });
+            RaderList.Add(new RaderModel { ItemName = "稳压设备", Value = 20 });
+        }
+
+        private void GetStuffOutWorkData() // 从数据库中获取员工缺岗数据
+        {
+            StuffOutWorkList = new List<StuffOutWorkModel>();
+            StuffOutWorkList.Add(new StuffOutWorkModel { StuffName = "张晓婷", Position = "技术员", OutWorkCount = 123 });
+            StuffOutWorkList.Add(new StuffOutWorkModel { StuffName = "李晓", Position = "操作员", OutWorkCount = 23 });
+            StuffOutWorkList.Add(new StuffOutWorkModel { StuffName = "王克俭", Position = "检验工", OutWorkCount = 134 });
+            StuffOutWorkList.Add(new StuffOutWorkModel { StuffName = "陈家栋", Position = "统计员", OutWorkCount = 143 });
+            StuffOutWorkList.Add(new StuffOutWorkModel { StuffName = "杨过", Position = "技术员", OutWorkCount = 12 });
+        }
+
+        private void GetWorkShopData() // 从数据库中获取车间数据
+        {
+            WorkShopList = new List<WorkShopModel>();
+            WorkShopList.Add(new WorkShopModel { WorkShopName = "贴片车间", WorkingCount = 44, WaitCount = 32, WrongCount = 8, StopCount = 0 });
+            WorkShopList.Add(new WorkShopModel { WorkShopName = "DIP车间", WorkingCount = 32, WaitCount = 20, WrongCount = 8, StopCount = 0 });
+            WorkShopList.Add(new WorkShopModel { WorkShopName = "组装车间", WorkingCount = 56, WaitCount = 32, WrongCount = 10, StopCount = 10 });
+            WorkShopList.Add(new WorkShopModel { WorkShopName = "注塑车间", WorkingCount = 80, WaitCount = 68, WrongCount = 8, StopCount = 15 });
+        }
+
+        private void GetMachineData()
+        {
+            MachineList = new List<MachineModel>();
+            Random random = new Random();
+            for (int i = 0; i < 20; i++)
+            {
+                int plan = random.Next(100, 1000); // 随机产量
+                int complete = random.Next(0, plan); // 随机完成量
+                MachineList.Add(new MachineModel
+                {
+                    MachineName = $"机台{i + 1}",
+                    Status = "作业中",
+                    PlanCount = plan,
+                    FinishedCount = complete,
+                    OrderNo = "H202412345678"
+                });
+            }
         }
     }
 }

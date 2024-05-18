@@ -8,11 +8,12 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="LayGrid">
         <Canvas x:Name="mainCanvas"/>
-        <Polygon x:Name="P1" Stroke="Red" StrokeThickness="1"/>
-        <Polygon x:Name="P2" Stroke="Blue" StrokeThickness="1"/>
-        <Polygon x:Name="P3" Stroke="Green" StrokeThickness="1"/>
-        <Polygon x:Name="P4" Stroke="#99ffffff" StrokeThickness="1"/>
+        <Polygon x:Name="P1" Stroke="#22ffffff" StrokeThickness="1"></Polygon>
+        <Polygon x:Name="P2" Stroke="#22ffffff" StrokeThickness="1"></Polygon>
+        <Polygon x:Name="P3" Stroke="#22ffffff" StrokeThickness="1"></Polygon>
+        <Polygon x:Name="P4" Stroke="#22ffffff" StrokeThickness="1"></Polygon>
 
-        <Polygon x:Name="P5" Stroke="Orange" Fill="LightPink" StrokeThickness="1"/>
+        <!--数据多边形-->
+        <Polygon x:Name="P5" Stroke="Orange" Fill="#550091F0" StrokeThickness="1" ></Polygon>
     </Grid>
 </UserControl>

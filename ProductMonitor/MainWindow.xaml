@@ -46,9 +46,9 @@
                     </Grid.RowDefinitions>
                     
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" WindowChrome.IsHitTestVisibleInChrome="True">
-                        <Button Content="&#xe624;" Style="{StaticResource OperateBtnStyle}"/>
-                        <Button Content="&#xe600;" Style="{StaticResource OperateBtnStyle}"/>
-                        <Button Content="&#xe609;" Style="{StaticResource OperateBtnStyle}" Background="DarkRed"/>
+                        <Button Content="&#xe624;" Click="BtnMin" Style="{StaticResource OperateBtnStyle}"/>
+                        <Button Content="&#xe600;" Click="Button_Click" Style="{StaticResource OperateBtnStyle}"/>
+                        <Button Content="&#xe609;" Click="BtnClose" Style="{StaticResource OperateBtnStyle}" Background="DarkRed"/>
                     </StackPanel>
 
                     <Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#5518aabd">
